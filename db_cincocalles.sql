@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 28-09-2022 a las 22:54:55
+-- Tiempo de generación: 29-09-2022 a las 20:48:10
 -- Versión del servidor: 8.0.28
 -- Versión de PHP: 7.4.19
 
@@ -125,7 +125,7 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`id`, `nro_documento`, `nombres`, `apellidos`, `fecha_nacimiento`, `email`, `telefono`, `created_at`, `updated_at`) VALUES
-(1, '100', 'Admin', 'Default', '2000-12-12', 'admin@gmail.com', '100-200-300', NULL, NULL);
+(1, '', '', '', '2000-12-12', 'admin@gmail.com', '', '2022-09-30 01:43:35', '2022-09-30 01:43:35');
 
 -- --------------------------------------------------------
 
@@ -185,6 +185,34 @@ CREATE TABLE `migrations` (
   `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_100000_create_password_resets_table', 1),
+(2, '2019_08_19_000000_create_failed_jobs_table', 1),
+(3, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(4, '2022_09_08_000001_create_roles_table', 1),
+(5, '2022_09_08_000002_create_tipo_sucursals_table', 1),
+(6, '2022_09_08_000003_create_sucursals_table', 1),
+(7, '2022_09_08_000004_create_empleados_table', 1),
+(8, '2022_09_08_000005_create_users_table', 1),
+(9, '2022_09_22_234231_create_clientes_table', 1),
+(10, '2022_09_23_002647_create_reclamos_table', 1),
+(11, '2022_09_23_003619_create_categorias_table', 1),
+(12, '2022_09_23_003801_create_productos_table', 1),
+(13, '2022_09_23_004334_create_producto_bodegas_table', 1),
+(14, '2022_09_23_004704_create_inventarios_table', 1),
+(15, '2022_09_23_005445_create_ofertas_table', 1),
+(16, '2022_09_23_013408_create_tipo_pagos_table', 1),
+(17, '2022_09_23_013409_create_ventas_table', 1),
+(18, '2022_09_23_013857_create_detalle_ventas_table', 1),
+(19, '2022_09_23_014329_create_devoluciones_table', 1),
+(20, '2022_09_26_021138_create_salida_productos_table', 1),
+(21, '2022_09_26_021333_create_detalle_salidas_table', 1),
+(22, '2022_09_28_043202_create_inventario_ofertas_table', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -208,6 +236,7 @@ CREATE TABLE `ofertas` (
 --
 
 CREATE TABLE `password_resets` (
+  `id` bigint UNSIGNED NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
@@ -301,7 +330,7 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
-(1, 'Administrador', NULL, NULL);
+(1, 'Administrador', '2022-09-30 01:43:35', '2022-09-30 01:43:35');
 
 -- --------------------------------------------------------
 
@@ -339,14 +368,6 @@ CREATE TABLE `sucursals` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `sucursals`
---
-
-INSERT INTO `sucursals` (`id`, `nombre`, `direccion`, `telefono`, `descripcion`, `url_logo`, `tipo_sucursal_id`, `created_at`, `updated_at`) VALUES
-(1, 'S1', 'Direccion', '+51960789167', NULL, NULL, 1, '2022-09-23 12:16:22', '2022-09-23 12:16:22'),
-(2, 'S2', 'Direccion', '+51960789167', NULL, NULL, 2, '2022-09-23 12:16:31', '2022-09-23 12:16:31');
-
 -- --------------------------------------------------------
 
 --
@@ -373,14 +394,6 @@ CREATE TABLE `tipo_sucursals` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `tipo_sucursals`
---
-
-INSERT INTO `tipo_sucursals` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
-(1, 'Supermercado', '2022-09-23 12:15:40', '2022-09-23 12:15:40'),
-(2, 'Tienda Mayorista', '2022-09-23 12:15:59', '2022-09-23 12:15:59');
-
 -- --------------------------------------------------------
 
 --
@@ -406,7 +419,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `super_admin`, `email_verified_at`, `empleado_id`, `sucursal_id`, `rol_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'admin@gmail.com', '$2y$10$5lmuYBDir9UotQbZOjuspOJGkTvlMluaaMnCjcUpdp8EsOc6/8/eu', 1, NULL, 1, NULL, 1, NULL, '2022-09-23 10:49:40', '2022-09-23 10:49:40');
+(1, 'admin@gmail.com', '$2y$10$kNy7n1uGgxfNj1.0AKNkv.t3kXrmpyWLd.QXovb/Sod15HocsaQlm', 1, NULL, 1, NULL, 1, NULL, '2022-09-30 01:43:35', '2022-09-30 01:43:35');
 
 -- --------------------------------------------------------
 
@@ -422,6 +435,7 @@ CREATE TABLE `ventas` (
   `user_id` bigint UNSIGNED NOT NULL,
   `fecha` date NOT NULL,
   `total` double NOT NULL,
+  `completado` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -515,6 +529,7 @@ ALTER TABLE `ofertas`
 -- Indices de la tabla `password_resets`
 --
 ALTER TABLE `password_resets`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `password_resets_email_index` (`email`);
 
 --
@@ -662,12 +677,18 @@ ALTER TABLE `inventario_ofertas`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `ofertas`
 --
 ALTER TABLE `ofertas`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `password_resets`
+--
+ALTER TABLE `password_resets`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -710,7 +731,7 @@ ALTER TABLE `salida_productos`
 -- AUTO_INCREMENT de la tabla `sucursals`
 --
 ALTER TABLE `sucursals`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_pagos`
@@ -722,13 +743,13 @@ ALTER TABLE `tipo_pagos`
 -- AUTO_INCREMENT de la tabla `tipo_sucursals`
 --
 ALTER TABLE `tipo_sucursals`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
