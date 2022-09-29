@@ -58,12 +58,17 @@ class UserController extends Controller
             'email' => 'required|unique:users',
             'password' => 'required',
             'empleado_id' => 'required',
-            'sucursal_id' => 'required',
             'rol_id' => 'required',
         ]);
 
         $user = $request->all();
-        $user['super_admin'] = true; //Modificar en futuro
+        $user['super_admin'] = false;
+
+        if($user['sucursal_id'] == null){
+            $user['super_admin'] = true;
+            $user['rol_id'] = 1;
+        }
+        
         $user['password'] = Hash::make($request->get('password'));
         try {
             User::create($user);
@@ -123,7 +128,6 @@ class UserController extends Controller
         $request->validate([
             'password' => 'required',
             'empleado_id' => 'required',
-            'sucursal_id' => 'required',
             'rol_id' => 'required',
         ]);
 

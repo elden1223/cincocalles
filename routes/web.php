@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminDefaultController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DetalleSalidaController;
+use App\Http\Controllers\DetalleVentaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\InventarioController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TipoPagoController;
 use App\Http\Controllers\TipoSucursalController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VentaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -170,3 +172,22 @@ Route::get('/inventariooferta/edit/{id}', [InventarioOfertaController::class, 'e
 Route::post('/inventariooferta/update/{id}', [InventarioOfertaController::class, 'update'])->name('inventariooferta.update');
 Route::delete('/inventariooferta/delete/{id}', [InventarioOfertaController::class, 'destroy'])->name('inventariooferta.delete');
 Route::get('/inventariooferta/show/{id}', [InventarioOfertaController::class, 'show'])->name('inventariooferta.show');
+
+Route::get('/ventas', [VentaController::class, 'index'])->name('ventas');
+Route::get('/venta/create', [VentaController::class, 'create'])->name('venta.create');
+Route::post('/venta/store', [VentaController::class, 'store'])->name('venta.store');
+Route::get('/venta/procesar/{id}', [VentaController::class, 'procesar'])->name('venta.procesar');
+Route::get('/venta/edit/{id}', [VentaController::class, 'edit'])->name('venta.edit');
+Route::post('/venta/update/{id}', [VentaController::class, 'update'])->name('venta.update');
+Route::delete('/venta/delete/{id}', [VentaController::class, 'destroy'])->name('venta.delete');
+Route::get('/venta/cancel/{id}', [VentaController::class, 'destroy'])->name('venta.cancel');
+Route::get('/venta/show/{id}', [VentaController::class, 'show'])->name('venta.show');
+
+Route::get('/detalleventas/{id}', [DetalleVentaController::class, 'index'])->name('detalleventas');
+Route::get('/detalleventa/create/{id}', [DetalleVentaController::class, 'create'])->name('detalleventa.create');
+Route::post('/detalleventa/store', [DetalleVentaController::class, 'store'])->name('detalleventa.store');
+Route::get('/detalleventa/edit/{id}', [DetalleVentaController::class, 'edit'])->name('detalleventa.edit');
+Route::post('/detalleventa/update/{id}', [DetalleVentaController::class, 'update'])->name('detalleventa.update');
+Route::delete('/detalleventa/delete/{id}', [DetalleVentaController::class, 'destroy'])->name('detalleventa.delete');
+Route::get('/detalleventa/show/{id}', [DetalleVentaController::class, 'show'])->name('detalleventa.show');
+

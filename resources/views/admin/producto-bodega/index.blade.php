@@ -3,7 +3,7 @@
 @section('content')
 <section class="content">
     <div class="container-fluid">
-        <h3>Porductos en Bodega</h3>
+        <h3>Productos en Bodega</h3>
         <div class="mb-3">
             <form action="{{ route('productobodegas') }}" method="get">
                 <div class="row">

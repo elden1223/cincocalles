@@ -19,8 +19,9 @@
 </div>
 
 <div class="mb-3">
-    <label for="sucursal_id">Sucursal <b class="text-danger">*</b></label>
+    <label for="sucursal_id">Sucursal (No seleccionar para Administradores)</label>
     <select class="form-control @error('sucursal_id') is-invalid @enderror" name="sucursal_id">
+        <option value="">Seleccionar</option>
         @foreach ($sucursals as $item)
         @if($item->id == $user->sucursal_id)
         <option value="{{ $item->id }}" selected> {{$item}}</option>

@@ -20,7 +20,8 @@ class CreateVentasTable extends Migration
             $table->bigInteger('tipo_pago_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->date('fecha');
-            $table->double('total');            
+            $table->double('total');  
+            $table->boolean('completado');          
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->foreign('tipo_pago_id')->references('id')->on('tipo_pagos');
             $table->foreign('user_id')->references('id')->on('users');

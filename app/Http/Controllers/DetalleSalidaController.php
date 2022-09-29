@@ -164,6 +164,9 @@ class DetalleSalidaController extends Controller
                 return back()->with('error', 'Esta Salida de productos ya fue procesado. No se admite cambios');
             }
 
+            $detallesalida->productobodega->stock += $detallesalida->cantidad;
+            $detallesalida->productobodega->update();
+
             $detallesalida->delete();
             return redirect()->route('detallesalidas', $detallesalida->salida_producto_id)->with('success', 'Detalle Salida eliminado correctamente');
         } catch (\Throwable $th) {

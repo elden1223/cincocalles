@@ -18,6 +18,7 @@ class Venta extends Model
         'user_id',
         'fecha',
         'total',
+        'completado',
     ];
 
     public function Cliente(){

@@ -35,7 +35,7 @@ class SalidaProductoController extends Controller
         $sucursal = $request->session()->get('sucursal');
 
         $filter = $request->get('filter');        
-        $salidas = SalidaProducto::where('nro_salida', 'LIKE', '%' . $filter . '%')
+        $salidas = SalidaProducto::where('nro_salida', 'LIKE', $filter . '%')
             ->where('sucursal_id', '=', $sucursal->id)
             ->paginate(10);
         return view('admin.salida.index', compact('salidas', 'filter'));

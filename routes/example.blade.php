@@ -1,7 +1,8 @@
-Route::get('/inventarioofertas', [InventarioOfertaController::class, 'index'])->name('inventarioofertas');
-Route::get('/inventariooferta/create', [InventarioOfertaController::class, 'create'])->name('inventariooferta.create');
-Route::post('/inventariooferta/store', [InventarioOfertaController::class, 'store'])->name('inventariooferta.store');
-Route::get('/inventariooferta/edit/{id}', [InventarioOfertaController::class, 'edit'])->name('inventariooferta.edit');
-Route::post('/inventariooferta/update/{id}', [InventarioOfertaController::class, 'update'])->name('inventariooferta.update');
-Route::delete('/inventariooferta/delete/{id}', [InventarioOfertaController::class, 'destroy'])->name('inventariooferta.delete');
-Route::get('/inventariooferta/show/{id}', [InventarioOfertaController::class, 'show'])->name('inventariooferta.show');
+Route::get('/ventas', [VentaProductoController::class, 'index'])->name('ventas');
+Route::get('/venta/create', [VentaProductoController::class, 'create'])->name('venta.create');
+Route::post('/venta/store', [VentaProductoController::class, 'store'])->name('venta.store');
+Route::get('/venta/procesar/{id}', [VentaProductoController::class, 'procesar'])->name('venta.procesar');
+Route::get('/venta/edit/{id}', [VentaProductoController::class, 'edit'])->name('venta.edit');
+Route::post('/venta/update/{id}', [VentaProductoController::class, 'update'])->name('venta.update');
+Route::delete('/venta/delete/{id}', [VentaProductoController::class, 'destroy'])->name('venta.delete');
+Route::get('/venta/show/{id}', [VentaProductoController::class, 'show'])->name('venta.show');

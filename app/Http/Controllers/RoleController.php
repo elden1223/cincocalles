@@ -110,6 +110,10 @@ class RoleController extends Controller
             'nombre' => 'required',
         ]);
 
+        if($id == 1){
+            return back()->with('error', 'No puedes modificar el rol Administrador');
+        }
+
         try {
             $role = Role::findOrFail($id);
 
@@ -130,6 +134,10 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
+        if($id == 1){
+            return back()->with('error', 'No puedes eliminar el rol Administrador');
+        }
+
         try {
             $role = Role::findOrFail($id);
 
