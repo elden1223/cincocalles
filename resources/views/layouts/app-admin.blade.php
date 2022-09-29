@@ -261,7 +261,7 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-file"></i>
                 <p>
-                  Entrada y Salida de Productos
+                  Salida de Productos de bodega
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
