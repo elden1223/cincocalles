@@ -46,9 +46,9 @@
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
+                            @if (Route::has('admindefault'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('admindefault') }}">{{ __('Registrar Admin') }}</a>
                                 </li>
                             @endif
                         @else

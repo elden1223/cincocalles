@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Empleado;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -63,12 +65,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'super_admin' => true,
-            'empleado_id' => 1,
-            'rol_id' => 1,
-        ]);
+        $users = User::all();
+        if(count($users) == 0){
+            Role::create(['nombre' => 'Administrador']);
+            Empleado::create([
+                'nro_documento' => '',
+                'nombres' => '',
+                'apellidos' => '',
+                'fecha_nacimiento' => '2000-12-12',
+                'email' => 'admin@gmail.com',
+                'telefono' => '',
+            ]);
+
+            return User::create([
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('admin'),
+                'super_admin' => true,
+                'empleado_id' => 1,
+                'rol_id' => 1,
+            ]);
+        }
+        return redirect()->route('login');
     }
 }

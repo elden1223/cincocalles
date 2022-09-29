@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminDefaultController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DetalleSalidaController;
@@ -38,6 +39,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home/seleccionar/{id}', [App\Http\Controllers\HomeController::class, 'seleccionar'])->name('home.seleccionar');
+
+Route::get('/admindefault', [AdminDefaultController::class, 'default'])->name('admindefault');
 
 Route::get('/roles', [RoleController::class, 'index'])->name('roles');
 Route::get('/role/create', [RoleController::class, 'create'])->name('role.create');
