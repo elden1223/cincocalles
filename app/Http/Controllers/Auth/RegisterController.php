@@ -77,7 +77,7 @@ class RegisterController extends Controller
                 'telefono' => '',
             ]);
 
-            return User::create([
+            User::create([
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('admin'),
                 'super_admin' => true,

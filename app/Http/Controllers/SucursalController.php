@@ -28,7 +28,9 @@ class SucursalController extends Controller
     public function index(Request $request)
     {
         $filter = $request->get('filter');
-        $sucursals = Sucursal::where('nombre', 'LIKE', $filter . '%')->paginate(10);
+        $sucursals = Sucursal::where('nombre', 'LIKE', $filter . '%')
+            ->orderby('nombre', 'ASC')
+            ->paginate(10);
         return view('admin.sucursal.index', compact('sucursals', 'filter'));
     }
 

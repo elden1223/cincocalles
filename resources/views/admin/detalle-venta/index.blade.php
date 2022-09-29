@@ -4,8 +4,9 @@
 <section class="content">
     <div class="container-fluid">
 
+        <h3>Detalle de venta</h3>
+
         @if(!$venta->completado)
-        <h3>Detalle de venta: Crear</h3>
         <div class="col-md-12">
             <form action="{{ route('detalleventa.store') }}" method="post">
                 @csrf
@@ -38,23 +39,25 @@
                     <td>{{ $item->precio }}</td>
                     <td>{{ $item->precio * $item->cantidad }}</td>
                     <td>{{ $item->descuento }}</td>
-                    @if(!$venta->completado)
+
                     <td class="text-right">
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Opciones
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                @if(!$venta->completado)
                                 <li>
                                     <button class="dropdown-item text-danger" data-toggle="modal" data-target="#modal-{{ $item->id }}">
                                         <i class="fas fa-trash-alt"></i> Eliminar
                                     </button>
                                 </li>
+                                @endif
+                                <li><a class="dropdown-item" href="{{ route('devolucion.create',$item->id) }}"><i class="fas fa-flash"></i> Devolver</a></li>
                             </ul>
                         </div>
                         @include('admin.detalle-venta.modal')
                     </td>
-                    @endif
                 </tr>
                 @endforeach
             </tbody>

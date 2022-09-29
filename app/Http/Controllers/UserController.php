@@ -29,6 +29,7 @@ class UserController extends Controller
             ->where('users.email', 'LIKE', $filter . '%')
             ->orWhere('r.nombre', 'LIKE', $filter . '%')
             ->select('users.*')
+            ->orderby('r.nombre', 'ASC')
             ->paginate(10);
         return view('admin.user.index', compact('users', 'filter'));
     }

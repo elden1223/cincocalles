@@ -31,6 +31,8 @@ class ReclamoController extends Controller
         $reclamos = Reclamo::where('estado', 'LIKE', $filter . '%')
             ->orWhere('fecha', 'LIKE', $filter . '%')
             ->orWhere('nro_venta', 'LIKE', $filter . '%')
+            ->orderby('fecha', 'DESC')
+            ->orderby('estado', 'ASC')
             ->paginate(10);
         return view('admin.reclamo.index', compact('reclamos', 'filter'));
     }

@@ -27,7 +27,9 @@ class EmpleadoController extends Controller
     public function index(Request $request)
     {
         $filter = $request->get('filter');
-        $empleados = Empleado::where('nro_documento', 'LIKE', $filter . '%')->paginate(10);
+        $empleados = Empleado::where('nro_documento', 'LIKE', $filter . '%')
+        ->orderby('nro_documento', 'ASC')
+        ->paginate(10);
         return view('admin.empleado.index', compact('empleados', 'filter'));
     }
 

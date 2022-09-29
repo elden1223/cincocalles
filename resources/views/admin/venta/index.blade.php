@@ -8,7 +8,7 @@
             <form action="{{ route('ventas') }}" method="get">
                 <div class="row">
                     <div class="col-md-8">
-                        <input class="form-control" type="text" name="filter" value="{{ $filter }}" placeholder="Buscar por Número de venta o fecha">
+                        <input class="form-control" type="text" name="filter" value="{{ $filter }}" placeholder="Buscar por Número de venta o fecha (yyyy-mm-dd)">
                     </div>
                     <div class="col-md-4 text-right">
                         <input class="btn btn-dark" type="submit" value="Buscar">
@@ -37,7 +37,7 @@
                     <td>{{ $item->nro_venta }}</td>
                     <td>{{ $item->cliente }}</td>
                     <td>{{ $item->tipopago }}</td>
-                    <td>{{ $item->user }}</td>
+                    <td>{{ $item->user->empleado }}</td>
                     <td>{{ $item->fecha }}</td>
                     <td>{{ $item->total }}</td>
                     @if($item->completado)

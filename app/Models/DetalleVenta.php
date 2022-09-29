@@ -33,6 +33,6 @@ class DetalleVenta extends Model
 
     public function __toString()
     {
-        return $this->inventario . ', ' . $this->venta;
+        return $this->venta . ', ' . $this->inventario;
     }
 }

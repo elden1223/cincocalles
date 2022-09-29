@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
+use App\Models\Devolucion;
+use App\Models\DetalleVenta;
 use Illuminate\Http\Request;
 
-class CategoriaController extends Controller
+class DevolucionController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -26,10 +28,10 @@ class CategoriaController extends Controller
     public function index(Request $request)
     {
         $filter = $request->get('filter');
-        $categorias = Categoria::where('nombre', 'LIKE', $filter . '%')
-            ->orderby('nombre', 'ASC')
+        $devoluciones = Devolucion::where('fecha', 'LIKE', $filter . '%')
+            ->orderby('updated_at', 'DESC')
             ->paginate(10);
-        return view('admin.categoria.index', compact('categorias', 'filter'));
+        return view('admin.devolucion.index', compact('devoluciones', 'filter'));
     }
 
     /**
@@ -37,10 +39,14 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        $categoria = new Categoria();
-        return view('admin.categoria.create', compact('categoria'));
+        $detalleventa = DetalleVenta::findOrFail($id);
+
+        $devolucion = new Devolucion();
+        $devolucion->detalle_venta_id = $detalleventa->id;
+
+        return view('admin.devolucion.create', compact('devolucion', 'detalleventa'));
     }
 
     /**
@@ -52,13 +58,15 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|unique:categorias',
+            'fecha' => 'required',
+            'detalle_venta_id' => 'required',
         ]);
 
-        $categoria = $request->all();
+        $devolucion = $request->all();
+        $devolucion['aprobado'] = true;
         try {
-            Categoria::create($categoria);
-            return redirect()->route('categorias')->with('success', 'Categoría creado correctamente');
+            Devolucion::create($devolucion);
+            return redirect()->route('devoluciones')->with('success', 'Devolución creado correctamente');
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());
         }
@@ -72,13 +80,9 @@ class CategoriaController extends Controller
      */
     public function show($id)
     {
-        $categoria = Categoria::findOrFail($id);
+        $devolucion = Devolucion::findOrFail($id);
 
-        if ($categoria == null) {
-            return redirect()->route('categorias');
-        }
-
-        return view('admin.categoria.show', compact('categoria'));
+        return view('admin.devolucion.show', compact('devolucion'));
     }
 
     /**
@@ -89,13 +93,10 @@ class CategoriaController extends Controller
      */
     public function edit($id)
     {
-        $categoria = Categoria::findOrFail($id);
+        $devolucion = Devolucion::findOrFail($id);
+        $detalleventa = $devolucion->detalleventa;
 
-        if ($categoria == null) {
-            return redirect()->route('categorias');
-        }
-
-        return view('admin.categoria.edit', compact('categoria'));
+        return view('admin.devolucion.edit', compact('devolucion', 'detalleventa'));
     }
 
     /**
@@ -108,16 +109,20 @@ class CategoriaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nombre' => 'required',
+            'fecha' => 'required',
+            'detalle_venta_id' => 'required',
         ]);
 
         try {
-            $categoria = Categoria::findOrFail($id);
+            $devolucion = Devolucion::findOrFail($id);
 
-            $categoria->nombre = $request->get('nombre');
-            $categoria->update();
+            $devolucion->fecha = $request->get('fecha');
+            $devolucion->observaciones = $request->get('observaciones');
+            $devolucion->aprobado = true;
+            $devolucion->detalle_venta_id = $request->get('detalle_venta_id');
+            $devolucion->update();
 
-            return redirect()->route('categorias')->with('success', 'Categoría actualizado correctamente');
+            return redirect()->route('devoluciones')->with('success', 'Devolución actualizado correctamente');
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());
         }
@@ -132,12 +137,12 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         try {
-            $categoria = Categoria::findOrFail($id);
+            $devolucion = Devolucion::findOrFail($id);
 
-            $categoria->delete();
-            return redirect()->route('categorias')->with('success', 'Categoría eliminado correctamente');
+            $devolucion->delete();
+            return redirect()->route('devoluciones')->with('success', 'Devolución eliminado correctamente');
         } catch (\Throwable $th) {
-            return redirect()->route('categorias')->with('error', $th->getMessage());
+            return redirect()->route('devoluciones')->with('error', $th->getMessage());
         }
     }
 }

@@ -19,7 +19,7 @@
 </div>
 
 <div class="mb-3">
-    <label for="fecha">Fecha </label>
+    <label for="fecha">Fecha <b class="text-danger">*</b></label>
     <input class="form-control @error('fecha') is-invalid @enderror" type="date" name="fecha" value="{{ old('fecha', $reclamo->fecha) }}">
     @error('fecha')
     <span class="invalid-feedback" role="alert">

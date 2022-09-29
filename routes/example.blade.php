@@ -1,8 +1,7 @@
-Route::get('/ventas', [VentaProductoController::class, 'index'])->name('ventas');
-Route::get('/venta/create', [VentaProductoController::class, 'create'])->name('venta.create');
-Route::post('/venta/store', [VentaProductoController::class, 'store'])->name('venta.store');
-Route::get('/venta/procesar/{id}', [VentaProductoController::class, 'procesar'])->name('venta.procesar');
-Route::get('/venta/edit/{id}', [VentaProductoController::class, 'edit'])->name('venta.edit');
-Route::post('/venta/update/{id}', [VentaProductoController::class, 'update'])->name('venta.update');
-Route::delete('/venta/delete/{id}', [VentaProductoController::class, 'destroy'])->name('venta.delete');
-Route::get('/venta/show/{id}', [VentaProductoController::class, 'show'])->name('venta.show');
+Route::get('/devolucions/{id}', [DevolucionController::class, 'index'])->name('devolucions');
+Route::get('/devolucion/create/{id}', [DevolucionController::class, 'create'])->name('devolucion.create');
+Route::post('/devolucion/store', [DevolucionController::class, 'store'])->name('devolucion.store');
+Route::get('/devolucion/edit/{id}', [DevolucionController::class, 'edit'])->name('devolucion.edit');
+Route::post('/devolucion/update/{id}', [DevolucionController::class, 'update'])->name('devolucion.update');
+Route::delete('/devolucion/delete/{id}', [DevolucionController::class, 'destroy'])->name('devolucion.delete');
+Route::get('/devolucion/show/{id}', [DevolucionController::class, 'show'])->name('devolucion.show');

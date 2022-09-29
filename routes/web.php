@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DetalleSalidaController;
 use App\Http\Controllers\DetalleVentaController;
+use App\Http\Controllers\DevolucionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\InventarioController;
@@ -191,3 +192,10 @@ Route::post('/detalleventa/update/{id}', [DetalleVentaController::class, 'update
 Route::delete('/detalleventa/delete/{id}', [DetalleVentaController::class, 'destroy'])->name('detalleventa.delete');
 Route::get('/detalleventa/show/{id}', [DetalleVentaController::class, 'show'])->name('detalleventa.show');
 
+Route::get('/devoluciones', [DevolucionController::class, 'index'])->name('devoluciones');
+Route::get('/devolucion/create/{id}', [DevolucionController::class, 'create'])->name('devolucion.create');
+Route::post('/devolucion/store', [DevolucionController::class, 'store'])->name('devolucion.store');
+Route::get('/devolucion/edit/{id}', [DevolucionController::class, 'edit'])->name('devolucion.edit');
+Route::post('/devolucion/update/{id}', [DevolucionController::class, 'update'])->name('devolucion.update');
+Route::delete('/devolucion/delete/{id}', [DevolucionController::class, 'destroy'])->name('devolucion.delete');
+Route::get('/devolucion/show/{id}', [DevolucionController::class, 'show'])->name('devolucion.show');

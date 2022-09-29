@@ -248,6 +248,12 @@
                     <p>Reclamos</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{ route('devoluciones') }}" class="nav-link">
+                    <i class="far nav-icon"></i>
+                    <p>Devoluciones</p>
+                  </a>
+                </li>
               </ul>
             </li>
 
@@ -371,6 +377,12 @@
                   <a href="{{ route('reclamos') }}" class="nav-link">
                     <i class="far nav-icon"></i>
                     <p>Reclamos</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('devoluciones') }}" class="nav-link">
+                    <i class="far nav-icon"></i>
+                    <p>Devoluciones</p>
                   </a>
                 </li>
               </ul>

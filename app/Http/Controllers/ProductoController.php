@@ -32,6 +32,7 @@ class ProductoController extends Controller
             ->join('categorias', 'productos.categoria_id', '=', 'categorias.id')
             ->where('productos.nombre', 'LIKE', '%' . $filter . '%')
             ->orWhere('categorias.nombre', 'LIKE', $filter . '%')
+            ->orderby('productos.nombre', 'ASC')
             ->paginate(10);
         return view('admin.producto.index', compact('productos', 'filter'));
     }

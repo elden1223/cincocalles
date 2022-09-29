@@ -26,7 +26,9 @@ class ClienteController extends Controller
     public function index(Request $request)
     {
         $filter = $request->get('filter');
-        $clientes = Cliente::where('nro_documento', 'LIKE', $filter . '%')->paginate(10);
+        $clientes = Cliente::where('nro_documento', 'LIKE', $filter . '%')
+            ->orderby('nro_documento', 'ASC')
+            ->paginate(10);
         return view('admin.cliente.index', compact('clientes', 'filter'));
     }
 

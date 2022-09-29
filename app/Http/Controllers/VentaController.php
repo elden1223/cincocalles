@@ -34,7 +34,9 @@ class VentaController extends Controller
     {
         $filter = $request->get('filter');        
         $ventas = Venta::where('nro_venta', 'LIKE', $filter . '%')
-            ->where('fecha', 'LIKE', $filter . '%')
+            ->orwhere('fecha', 'LIKE', $filter . '%')
+            ->orderby('completado', 'ASC')
+            ->orderby('updated_at', 'DESC')
             ->paginate(10);
         return view('admin.venta.index', compact('ventas', 'filter'));
     }

@@ -33,6 +33,7 @@ class ProductoBodegaController extends Controller
             ->where('productos.nombre', 'LIKE', '%' . $filter . '%')
             ->orWhere('producto_bodegas.nro_lote', 'LIKE', $filter . '%')
             ->orWhere('producto_bodegas.codigo_barra', 'LIKE', $filter . '%')
+            ->orderby('productos.nombre', 'ASC')
             ->paginate(10);
         return view('admin.producto-bodega.index', compact('productobodegas', 'filter'));
     }
