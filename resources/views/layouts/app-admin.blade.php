@@ -41,7 +41,6 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Home</a>
         </li>
       </ul>
 
@@ -87,6 +86,12 @@
 
         <div class="user-panel mt-2 pb-2 mb-2 d-flex">
           <div class="info">
+            <a href="#" class="d-block">Rol: {{ session('rol') }}</a>
+          </div>
+        </div>
+
+        <div class="user-panel mt-2 pb-2 mb-2 d-flex">
+          <div class="info">
             <a href="#" class="d-block">{{ Auth::user()->email }}</a>
           </div>
         </div>
@@ -108,6 +113,18 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+
+            @if(session('rol') == 'Administrador')
+
+            <li class="nav-item">
+              <a href="{{ route('home') }}" class="nav-link">
+                <i class="nav-icon fa fa-fire"></i>
+                <p>
+                  Seleccionar sucursal
+                </p>
+              </a>
+            </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -116,9 +133,10 @@
                 </p>
               </a>
             </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
+                <i class="nav-icon fas fa-home"></i>
                 <p>
                   Sucursales
                   <i class="fas fa-angle-left right"></i>
@@ -127,21 +145,22 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="{{ route('tiposucursals') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="far nav-icon"></i>
                     <p>Tipo de Sucursales</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('sucursals') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="far nav-icon"></i>
                     <p>Sucursales</p>
                   </a>
                 </li>
               </ul>
             </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
+                <i class="nav-icon fas fa-user"></i>
                 <p>
                   Control de acceso
                   <i class="fas fa-angle-left right"></i>
@@ -150,44 +169,37 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="{{ route('roles') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="far nav-icon"></i>
                     <p>Roles</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('empleados') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="far nav-icon"></i>
                     <p>Empleados</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('users') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="far nav-icon"></i>
                     <p>Usuarios</p>
                   </a>
                 </li>
               </ul>
             </li>
+
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
+              <a href="{{ route('clientes') }}" class="nav-link">
+                <i class="nav-icon fa fa-tag"></i>
                 <p>
                   Clientes
-                  <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('clientes') }}" class="nav-link">
-                    <i class="far nav-icon"></i>
-                    <p>Administrar Clientes</p>
-                  </a>
-                </li>
-              </ul>
             </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
+                <i class="nav-icon fas fa-bookmark"></i>
                 <p>
                   Productos y Categorías
                   <i class="fas fa-angle-left right"></i>
@@ -220,9 +232,10 @@
                 </li>
               </ul>
             </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
+                <i class="nav-icon fa fa-bell"></i>
                 <p>
                   Reclamos y Devoluciones
                   <i class="fas fa-angle-left right"></i>
@@ -237,9 +250,10 @@
                 </li>
               </ul>
             </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
+                <i class="nav-icon fa fa-file"></i>
                 <p>
                   Entrada y Salida de Productos
                   <i class="fas fa-angle-left right"></i>
@@ -254,9 +268,10 @@
                 </li>
               </ul>
             </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
+                <i class="nav-icon fa fa-credit-card"></i>
                 <p>
                   Pagos
                   <i class="fas fa-angle-left right"></i>
@@ -271,9 +286,10 @@
                 </li>
               </ul>
             </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
+                <i class="nav-icon fa fa-star"></i>
                 <p>
                   Ofertas
                   <i class="fas fa-angle-left right"></i>
@@ -294,23 +310,82 @@
                 </li>
               </ul>
             </li>
+
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
+              <a href="{{ route('ventas') }}" class="nav-link">
+                <i class="nav-icon fa fa-shopping-cart"></i>
                 <p>
                   Ventas
+                </p>
+              </a>
+            </li>
+
+            @else
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="{{ route('clientes') }}" class="nav-link">
+                <i class="nav-icon fa fa-tag"></i>
+                <p>
+                  Clientes
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-bookmark"></i>
+                <p>
+                  Productos
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ route('ventas') }}" class="nav-link">
+                  <a href="{{ route('inventarios') }}" class="nav-link">
                     <i class="far nav-icon"></i>
-                    <p>Ventas</p>
+                    <p>Producto en sucursal (Inventario)</p>
                   </a>
                 </li>
               </ul>
             </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-bell"></i>
+                <p>
+                  Reclamos y Devoluciones
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('reclamos') }}" class="nav-link">
+                    <i class="far nav-icon"></i>
+                    <p>Reclamos</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a href="{{ route('ventas') }}" class="nav-link">
+                <i class="nav-icon fa fa-shopping-cart"></i>
+                <p>
+                  Ventas
+                </p>
+              </a>
+            </li>
+
+            @endif
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

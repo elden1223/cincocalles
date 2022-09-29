@@ -28,6 +28,7 @@ class UserController extends Controller
         $users = User::join('roles as r', 'users.rol_id', '=', 'r.id')
             ->where('users.email', 'LIKE', $filter . '%')
             ->orWhere('r.nombre', 'LIKE', $filter . '%')
+            ->select('users.*')
             ->paginate(10);
         return view('admin.user.index', compact('users', 'filter'));
     }

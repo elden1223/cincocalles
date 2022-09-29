@@ -30,8 +30,10 @@ class HomeController extends Controller
 
         $user = User::findOrFail(Auth::user()->id);
         
+        session(['rol' => $user->rol->nombre]);
+
         if($user->sucursal_id != null){
-            session(['sucursal' => $user->sucursal]);
+            session(['sucursal' => $user->sucursal]);            
             return redirect()->route('inventarios');
         }
 

@@ -112,7 +112,8 @@ class InventarioController extends Controller
             ->where('i.sucursal_id', '=', $sucursal->id)
             ->where('o.fecha_inicio', '<=', $fecha)
             ->where('o.fecha_fin', '>=', $fecha)
-            ->orderby('o.porc_descuento', 'DESC')
+            ->select('inventario_ofertas.*')
+            ->orderby('o.porc_descuento', 'DESC')            
             ->get();
 
         return view('admin.inventario.index', compact('inventarios', 'ofertas', 'estados', 'filter', 'estado'));

@@ -115,6 +115,7 @@ class DetalleVentaController extends Controller
                 ->where('o.fecha_inicio', '<=', $fecha)
                 ->where('o.fecha_fin', '>=', $fecha)
                 ->orderby('o.porc_descuento', 'DESC')
+                ->select('inventario_ofertas.*')
                 ->get();
             $descuento = 0;
 
